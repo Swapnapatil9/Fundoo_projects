@@ -1,0 +1,21 @@
+.toggle-grid {
+    /* border: 2px solid black; */
+    width: 70vw;
+    position: relative;
+    left: 300px;
+    padding: 10px;
+}
+
+.grid-view {
+    /* border: 2px solid red; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2;
+    padding: 0;
+}
+
+/* .list-view {
+    border: 2px solid blue;
+} */

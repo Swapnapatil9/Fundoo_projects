@@ -1,0 +1,24 @@
+.Appbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 100vw;
+    /* border: 2px solid red; */
+}
+
+.Toolbar-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+#text {
+    color: black;
+}
+
+#menu {
+    margin-left: 8px;
+}

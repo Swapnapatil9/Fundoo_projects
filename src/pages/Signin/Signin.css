@@ -1,0 +1,52 @@
+form {
+    padding: 20px 20px;
+    /* border: 2px solid black; */
+}
+
+.imgbox {
+    width: 100px;
+    height: 100px;
+}
+
+#image {
+    padding-top: 20px;
+    width: 50%;
+    height: 100%;
+}
+
+.text {
+    color: blue;
+    text-align: left;
+    font-size: 13px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    width: 100%;
+    /* border: 2px solid red; */
+}
+
+#text {
+    padding-left: 15px;
+    color: blue;
+    width: 20%;
+    text-align: left;
+    font-size: 13px;
+}
+
+#button {
+    /* padding-left: 250px; */
+    width: 20%;
+    size: 50px;
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 80%;
+        margin:20px;
+    }
+}
