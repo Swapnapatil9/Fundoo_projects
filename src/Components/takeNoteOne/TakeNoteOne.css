@@ -1,0 +1,56 @@
+.main-container {
+    margin: 100px;
+    margin-left: 350px;
+}
+
+.grid-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 2px 2px rgb(184, 176, 176);
+    border-radius: 10px;
+    width: 100vh;
+    height: 6vh;
+    padding-top: 5px;
+}
+
+.notes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    text-align: left;
+    padding: 5px;
+}
+
+.new-list {
+    width: 10%;
+    height: 100%;
+}
+
+.new-note1 {
+    width: 10%;
+    height: 100%;
+}
+
+.new-note2 {
+    width: 10%;
+    height: 100%;
+}
+
+#icon{
+    padding-top: 2px;
+    filter: invert(40%);
+}
+input {
+    height: 100%;
+    width: 100%;
+    /* border: 2px solid blue; */
+}
+@media (max-width: 950px) {
+    .main-container {
+        margin-left: 150px;
+    }
+}
