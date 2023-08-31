@@ -9,11 +9,11 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridList.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridList({ color, notes, changeColor}) {
+function GridList({ color, notes}) {
   return (
-    <Grid container className='main-container2' style={{ width: "600px", backgroundColor:{color}  }}>
+    <Grid container className='main-container2' style={{ width: "600px", backgroundColor: notes.color}}>
 
-      <Grid container className='contents' spacing={2} >
+      <Grid container className='contents' spacing={2}>
         <Grid item xs={11} className='headline' style={{ textAlign: 'left' }}>
           <div>{notes.title}</div>
         </Grid>
@@ -28,7 +28,7 @@ function GridList({ color, notes, changeColor}) {
         <Grid item xs={5} className='miu-icons' style={{ textAlign: 'left', paddingRight: '5px' }}>
           <DoneOutlinedIcon />
           <PersonAddAltOutlinedIcon />
-          <ColorPopper color={color} />
+          <ColorPopper action='edit' NoteId={notes.id} color={color} />
           <InsertPhotoOutlinedIcon />
           <ArchiveOutlinedIcon />
           <DeleteOutlinedIcon />
