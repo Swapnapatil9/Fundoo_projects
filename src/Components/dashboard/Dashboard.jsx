@@ -62,23 +62,26 @@ function Dashboard({NoteId}) {
 
   useEffect(() => {
     getData();
-  }, [typeOfNotes])
+  }, [])
 
-
-  async function deleting() {
+//for delete
+  async function deleting(NoteId) {
     console.log("inside deleting");
-    let note = { noteIdList: [NoteId]}
-    console.log(note);
+    let note = { noteIdList: [NoteId], isDeleted: true}
+    console.log("data:",note);
+    console.log("inside api");
     const response = await Deleting(note)
+    getData()
     console.log(response);
   }
 
-
+//for Archive
   async function UpdateArchive() {
     console.log("inside update Archive");
-    let note = { noteIdList: [NoteId]}
+    let note = { noteIdList: [NoteId], isArchived: true}
     console.log(note);
     const response = await updateArchive(note)
+    getData()
     console.log(response);
   }
 
@@ -94,7 +97,7 @@ function Dashboard({NoteId}) {
           <div className="grid-view">
             {
               info.map((notes) =>
-                <GridView notes={notes} updateArchive ={UpdateArchive}/>
+                <GridView notes={notes} deleting={deleting} updateArchive ={UpdateArchive}/>
               )}
           </div>
         ) : (

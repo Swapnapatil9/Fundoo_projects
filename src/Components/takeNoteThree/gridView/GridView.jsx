@@ -32,7 +32,7 @@ function GridView({ color, notes,deleting }){
                     <ColorPopper action='edit' NoteId={notes.id} color={color} />
                     <InsertPhotoOutlinedIcon />
                     <ArchiveOutlinedIcon />
-                    <DeleteOutlinedIcon onclick={deleting} />
+                    <DeleteOutlinedIcon onClick={()=>deleting("Noteid")}/>
                 </Grid>
             </Grid>
         </Grid>
