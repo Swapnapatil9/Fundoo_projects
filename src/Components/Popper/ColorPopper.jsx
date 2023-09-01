@@ -4,7 +4,7 @@ import Popper from '@mui/material/Popper';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import { UpdateColor } from '../../Services/DataServices';
 
-function ColorPopper({NoteId, action, setData}) {
+function ColorPopper({NoteId, action, setData, getData}) {
 
   const colors = ["#EEE8AA", "#E9967A", "#bfff00", "#B8860B", "#BA55D3", "#CD5C5C", "#CD853F", "#DB7093", "#FF8C00"];
 
@@ -21,6 +21,7 @@ function ColorPopper({NoteId, action, setData}) {
         let cardColor = note.color
         console.log(cardColor);
         let response = await UpdateColor(note);
+        getData()
         console.log(response);
     }
 

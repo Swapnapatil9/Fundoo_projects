@@ -11,7 +11,7 @@ import { createNote } from '../../Services/DataServices';
 import ColorPopper from '../Popper/ColorPopper';
 
 
-function TakeNoteTwo({ color, showtoggle }) {
+function TakeNoteTwo({ color, showtoggle ,getData}) {
     const [data, setData] = useState({ title: "", Description: "", color: "", isArchived: false });
 
     const setTitle = (e) => {
@@ -25,12 +25,13 @@ function TakeNoteTwo({ color, showtoggle }) {
     }
     const Submit = async () => {
         let response = await createNote(data)
+        getData()
         console.log(response)
     }
 
     return (
         <div >
-                    <Grid container className='main-container' style={{ width: "650px" }}>
+                <Grid container className='main-container' style={{ width: "650px" }}>
                 <Grid container className='main-contents' spacing={2} style={{ backgroundColor: data.color}}>
 
                     <Grid item xs={12} className='top-content'>

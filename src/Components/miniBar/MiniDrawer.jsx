@@ -41,7 +41,7 @@ const Drawer = styled(muiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
-    border:'2px solid blue',
+    border: '2px solid blue',
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
     ...(open && {
@@ -55,7 +55,7 @@ const Drawer = styled(muiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-function MiniDrawer({open}) {
+function MiniDrawer({ open, getData }) {
 
   const navList = [
     { id: 1, name: 'Notes', icon: <LightbulbOutlinedIcon /> },
@@ -64,26 +64,29 @@ function MiniDrawer({open}) {
     { id: 4, name: 'Archive', icon: <ArchiveOutlinedIcon /> },
     { id: 5, name: 'Trash', icon: <DeleteOutlinedIcon /> }
   ]
-  
+
   return (
-    <Box sx={{ display: 'flex', position: 'relative' ,border:'2px solid red'}}>
-     
-      <Drawer variant="permanent" className='drawer' open={open} sx={{border:'2px solid red'}} >
-        
+    <Box sx={{ display: 'flex', position: 'relative', border: '2px solid red' }}>
+
+      <Drawer variant="permanent" className='drawer' open={open} sx={{ border: '2px solid red' }} >
+
         <List className='list'>
-          {
-            navList.map(list => (
-              <ListItem id='hovericon' button key={list.id}>
-                <ListItemIcon>
-                  {list.icon}
-                </ListItemIcon>
-                <ListItemText primary={list.name} />
-              </ListItem>
-            ))}
+          { navList?.map(list => {
+              return (
+                <ListItem id='hovericon' key={list.id}>
+                  <ListItemIcon onClick={()=>getData(list.name)}>
+                    {list.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={list.name} />
+                </ListItem>
+              )
+            }
+
+            )}
         </List>
       </Drawer>
     </Box>
-   
+
   );
 }
 export default MiniDrawer

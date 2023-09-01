@@ -9,7 +9,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridList.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridList({ color, notes, deleting, updateArchive}) {
+function GridList({ color, notes, deleting, updateArchive, getData}) {
   return (
     <Grid container className='main-container2' style={{ width: "600px", backgroundColor: notes.color}}>
 
@@ -21,14 +21,14 @@ function GridList({ color, notes, deleting, updateArchive}) {
           <PushPinOutlinedIcon id="icon">pin note</PushPinOutlinedIcon>
         </Grid>
 
-        <Grid item xs={12} className='take-note' style={{ textAlign: 'left' }}>
+        <Grid item xs={12} className='take-note' style={{ textAlign: 'left' ,marginLeft:'5px'}}>
           <div>{notes.description}</div>
         </Grid>
 
         <Grid item xs={5} className='miu-icons' style={{ textAlign: 'left', paddingRight: '5px' }}>
           <DoneOutlinedIcon />
           <PersonAddAltOutlinedIcon />
-          <ColorPopper action='edit' NoteId={notes.id} color={color} />
+          <ColorPopper action='edit' NoteId={notes.id} color={color} getData={getData}/>
           <InsertPhotoOutlinedIcon />
           <ArchiveOutlinedIcon NoteId={notes.id} onClick={()=>updateArchive(notes.id)}/>
           <DeleteOutlinedIcon NoteId={notes.id} onClick={()=>deleting(notes.id)}/>

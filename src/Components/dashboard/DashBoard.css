@@ -1,9 +1,9 @@
 .toggle-grid {
     /* border: 2px solid black; */
-    width: 70vw;
+    width: 75vw;
     position: relative;
-    left: 300px;
-    padding: 10px;
+    left: 200px;
+    /* padding: 10px; */
 }
 
 .grid-view {
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 2;
+    /* gap: 2; */
     padding: 0;
 }
 
