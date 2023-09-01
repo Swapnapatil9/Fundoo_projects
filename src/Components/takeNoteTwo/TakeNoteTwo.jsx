@@ -29,13 +29,13 @@ function TakeNoteTwo({ color, showtoggle }) {
     }
 
     return (
-        <div>
-            <Grid container className='main-container' style={{ width: "650px" }}>
-                <Grid container className='main-contents' spacing={2} >
+        <div >
+                    <Grid container className='main-container' style={{ width: "650px" }}>
+                <Grid container className='main-contents' spacing={2} style={{ backgroundColor: data.color}}>
 
                     <Grid item xs={12} className='top-content'>
                         <Grid item className='title-text'>
-                            <input type='text' placeholder='Title' onChange={setTitle}></input>
+                            <input type='text' placeholder='Title' onChange={setTitle} style={{ backgroundColor: data.color}}></input>
                         </Grid>
                         <Grid item className='pin-icon'>
                             <PushPinOutlinedIcon id="icon">pin note</PushPinOutlinedIcon>
@@ -43,16 +43,16 @@ function TakeNoteTwo({ color, showtoggle }) {
                     </Grid>
 
                     <Grid item xs={12} className='description-text'>
-                        <textarea type='text' placeholder='Take a note...' onChange={setDiscription} cols={50} rows={3}></textarea>
+                        <textarea type='text' placeholder='Take a note...' onChange={setDiscription} style={{ backgroundColor: data.color}} cols={50} rows={3}></textarea>
                     </Grid>
 
                     <Grid item className='bottom-content'>
                         <Grid item xs={6} className='miu-icons'>
                             <AddAlertOutlinedIcon />
                             <PersonAddAltOutlinedIcon />
-                            <ColorPopper color={color} />
+                            <ColorPopper action='create' color={color} setData={setData} />
                             <InsertPhotoOutlinedIcon />
-                            <ArchiveOutlinedIcon onClick={createArchive} />
+                            <ArchiveOutlinedIcon action='create' onClick={createArchive} />
                             <DeleteOutlinedIcon />
                         </Grid>
                         <Grid item xs={6} className='close-button'>
