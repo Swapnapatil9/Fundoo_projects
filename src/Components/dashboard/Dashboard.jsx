@@ -67,16 +67,17 @@ function Dashboard({NoteId}) {
 //for delete
   async function deleting(NoteId) {
     console.log("inside deleting");
-    let note = { noteIdList: [NoteId], isDeleted: true}
+    let note = { noteIdList: ['64e45f16902f10001f843aa9'], isDeleted: true}
     console.log("data:",note);
     console.log("inside api");
     const response = await Deleting(note)
+    console.log("after apicall", response);
     getData()
     console.log(response);
   }
 
 //for Archive
-  async function UpdateArchive() {
+  async function UpdateArchive(NoteId) {
     console.log("inside update Archive");
     let note = { noteIdList: [NoteId], isArchived: true}
     console.log(note);

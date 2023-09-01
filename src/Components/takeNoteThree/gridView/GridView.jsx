@@ -9,7 +9,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridView.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridView({ color, notes,deleting }){ 
+function GridView({ color, notes, deleting, updateArchive }){ 
     
     return (
         <Grid className='maincontainer2' style={{ width: "200px", backgroundColor: notes.color}}>
@@ -31,8 +31,8 @@ function GridView({ color, notes,deleting }){
                     <PersonAddAltOutlinedIcon />
                     <ColorPopper action='edit' NoteId={notes.id} color={color} />
                     <InsertPhotoOutlinedIcon />
-                    <ArchiveOutlinedIcon />
-                    <DeleteOutlinedIcon onClick={()=>deleting("Noteid")}/>
+                    <ArchiveOutlinedIcon NoteId={notes.id} onClick={()=>updateArchive(notes.id)}/>
+                    <DeleteOutlinedIcon NoteId={notes.id} onClick={()=>deleting(notes.id)}/>
                 </Grid>
             </Grid>
         </Grid>
