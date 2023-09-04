@@ -47,10 +47,19 @@
 input {
     height: 100%;
     width: 100%;
+    outline: none;
+    border: none;
     /* border: 2px solid blue; */
 }
-@media (max-width: 950px) {
+@media(min-width:600px){
+    
+}
+@media (max-width: 768px) {
     .main-container {
-        margin-left: 150px;
+        margin-left: 100px;
     }
+    .grid-content{
+        width: 50%;
+    }
+    
 }

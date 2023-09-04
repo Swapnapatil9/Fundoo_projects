@@ -27,7 +27,10 @@ export const updateArchive = async (obj) => {
     return response
 }
 export const Deleting = async (obj) => {
-    console.log("Inside service", obj);
     let response = await axios.post("http://fundoonotes.incubation.bridgelabz.com/api/notes/trashNotes", obj, headerConfig)
+    return response
+}
+export const PermanentDelete = async(obj) =>{
+    let response = await axios.post("http://fundoonotes.incubation.bridgelabz.com/api/notes/notes_prototype_destroyById_user_accessTokens",obj,headerConfig)
     return response
 }

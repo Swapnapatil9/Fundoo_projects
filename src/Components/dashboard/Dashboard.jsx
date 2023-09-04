@@ -4,13 +4,13 @@ import { useState } from 'react';
 import TakeNoteOne from '../takeNoteOne/TakeNoteOne';
 import TakeNoteTwo from '../takeNoteTwo/TakeNoteTwo';
 import MiniDrawer from '../miniBar/MiniDrawer';
-import { createNote, getNotes, updateArchive, Deleting } from '../../Services/DataServices';
+import { createNote, getNotes, updateArchive, Deleting, PermanentDelete } from '../../Services/DataServices';
 import GridView from '../takeNoteThree/gridView/GridView'
 import GridList from '../takeNoteThree/gridList/GridList'
 import NavBar from '../NavBar/NavBar';
 import './DashBoard.css'
 
-function Dashboard({NoteId}) {
+function Dashboard({ NoteId }) {
   //toggled for takenote1 and takenote2
   const [istoggle, setToggle] = useState(true);
   const showtoggle = () => {
@@ -44,19 +44,27 @@ function Dashboard({NoteId}) {
   const [info, setInfo] = useState([]);
   const [typeOfNotes, setTypeOfNotes] = useState("Notes");
   async function getData() {
+    // console.log("typeOfNotes",typeOfNotes);
     const response = await getNotes();
-    setInfo(response.data.data.data);
-    console.log(response.data.data.data);
+    const arr = response.data.data.data;
+    // setInfo(response.data.data.data);
+    // console.log(response.data.data.data);
 
     if (typeOfNotes === "Notes") {
-      const newArray = info.filter((data) => data.isArchive === false && data.isDeleted === false)
-      setTypeOfNotes(newArray)
-    } else if (typeOfNotes === "Archieve") {
-      const newArray = info.filter((data) => data.isArchive === true && data.isDeleted === false)
-      setTypeOfNotes(newArray)
-    } else if (typeOfNotes === "Delete") {
-      const newArray = info.filter((data) => data.isArchive === false && data.isDeleted === true)
-      setTypeOfNotes(newArray)
+      let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === false)
+      setInfo(newArray)
+      console.log("inside setinfo:",newArray);
+    } 
+    else if (typeOfNotes === "Archive") {
+      console.log("inside type of notes is archive:", typeOfNotes);
+      let newArray = arr.filter((data) =>data.isArchived === true && data.isDeleted === false)
+      setInfo(newArray)
+      console.log("inside setinfo:",newArray);
+    } 
+    else if (typeOfNotes === "Trash") {
+      let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === true)
+      setInfo(newArray)
+      console.log("inside setinfo:",newArray);
     }
   }
 
@@ -64,48 +72,57 @@ function Dashboard({NoteId}) {
     getData();
   }, [])
 
-//for delete
+  //for delete
   async function deleting(NoteId) {
     console.log("inside deleting");
-    let note = { noteIdList: ['64e45f16902f10001f843aa9'], isDeleted: true}
+    let note = { noteIdList: [NoteId], isDeleted: true }
+    // console.log("noteIdList:", NoteId);
     console.log("data:",note);
-    console.log("inside api");
+    // console.log("inside api");
     const response = await Deleting(note)
-    console.log("after apicall", response);
     getData()
     console.log(response);
   }
 
-//for Archive
+  //for Archive
   async function UpdateArchive(NoteId) {
     console.log("inside update Archive");
-    let note = { noteIdList: [NoteId], isArchived: true}
-    console.log(note);
+    let note = { noteIdList: [NoteId], isArchived: true }
+    console.log("data:",note);
     const response = await updateArchive(note)
     getData()
     console.log(response);
   }
 
+  //for permanent delete
+  async function permanentDeleting(NoteId) {
+    console.log("inside permanant deleting");
+    let note = { noteIdList: [NoteId], isDeleted: true }
+    const response = await PermanentDelete(note)
+    getData()
+    console.log(response);
+  }
   return (
     <div>
 
       <NavBar handleDrawer={handleDrawer} ChangeFlex={ChangeFlex} />
-      <MiniDrawer open={open} setTypeOfNotes={setTypeOfNotes} />
+      <MiniDrawer open={open} getData={getData} setTypeOfNotes ={setTypeOfNotes}/>
 
-      {istoggle ? <TakeNoteOne showtoggle={showtoggle} /> : <TakeNoteTwo showtoggle={showtoggle} Submit={Submit} />}
+
+      {istoggle ? <TakeNoteOne showtoggle={showtoggle} /> : <TakeNoteTwo showtoggle={showtoggle} Submit={Submit} getData={getData} />}
       <div className='toggle-grid'>
         {gridFlex ? (
           <div className="grid-view">
             {
               info.map((notes) =>
-                <GridView notes={notes} deleting={deleting} updateArchive ={UpdateArchive}/>
+                <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
               )}
           </div>
         ) : (
           <div className="list-view" >
             {
               info.map((notes) =>
-                <GridList notes={notes} deleting={deleting} updateArchive ={UpdateArchive}/>
+                <GridList notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
               )}
           </div>
         )}
@@ -117,3 +134,5 @@ function Dashboard({NoteId}) {
 }
 
 export default Dashboard
+
+

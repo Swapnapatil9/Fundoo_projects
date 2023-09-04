@@ -16,9 +16,6 @@
 }
 
 #text {
+    padding: 15px;
     color: black;
-}
-
-#menu {
-    margin-left: 8px;
 }

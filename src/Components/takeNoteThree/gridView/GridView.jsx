@@ -9,30 +9,30 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridView.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridView({ color, notes, deleting, updateArchive }){ 
+function GridView({ color, notes, deleting, updateArchive ,getData}){ 
     
     return (
-        <Grid className='maincontainer2' style={{ width: "200px", backgroundColor: notes.color}}>
+        <Grid className='maincontainer2' style={{ width: "245px", backgroundColor: notes.color}}>
 
-            <Grid container className='contents' spacing={2} >
-                <Grid item xs={9} className='headline' style={{ textAlign: 'left' }}>
+            <Grid container className='contents' spacing={1} style={{padding:'5px'}} >
+                <Grid item xs={10} className='headline' style={{ textAlign: 'left' }}>
                     <div>{notes.title}</div>
                 </Grid>
-                <Grid item xs={3} className='pin-icon'>
+                <Grid item xs={2} className='pin-icon'>
                     <PushPinOutlinedIcon id="icon">pin note</PushPinOutlinedIcon>
                 </Grid>
 
-                <Grid item xs={12} className='take-note' style={{ textAlign: 'left' }}>
+                <Grid item xs={12} className='take-note' style={{ textAlign: 'left'}}>
                     <div>{notes.description}</div>
                 </Grid>
 
-                <Grid item xs={12} className='miu-icons' style={{ textAlign: 'left', paddingRight: '5px' }}>
+                <Grid item xs={12} className='miu-icons'>
                     <DoneOutlinedIcon />
                     <PersonAddAltOutlinedIcon />
-                    <ColorPopper action='edit' NoteId={notes.id} color={color} />
+                    <ColorPopper action='edit' getData={getData} NoteId={notes.id} color={color} />
                     <InsertPhotoOutlinedIcon />
-                    <ArchiveOutlinedIcon NoteId={notes.id} onClick={()=>updateArchive(notes.id)}/>
-                    <DeleteOutlinedIcon NoteId={notes.id} onClick={()=>deleting(notes.id)}/>
+                    <ArchiveOutlinedIcon NoteId={notes.id} getData={getData} onClick={()=>updateArchive(notes.id)}/>
+                    <DeleteOutlinedIcon NoteId={notes.id} getData={getData} onClick={()=>deleting(notes.id)}/>
                 </Grid>
             </Grid>
         </Grid>
