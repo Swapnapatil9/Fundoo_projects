@@ -4,7 +4,7 @@ import { useState } from 'react';
 import TakeNoteOne from '../takeNoteOne/TakeNoteOne';
 import TakeNoteTwo from '../takeNoteTwo/TakeNoteTwo';
 import MiniDrawer from '../miniBar/MiniDrawer';
-import { createNote, getNotes, updateArchive, Deleting } from '../../Services/DataServices';
+import { createNote, getNotes, updateArchive, Deleting, PermanentDelete } from '../../Services/DataServices';
 import GridView from '../takeNoteThree/gridView/GridView'
 import GridList from '../takeNoteThree/gridList/GridList'
 import NavBar from '../NavBar/NavBar';
@@ -43,27 +43,28 @@ function Dashboard({ NoteId }) {
   //for fetching data
   const [info, setInfo] = useState([]);
   const [typeOfNotes, setTypeOfNotes] = useState("Notes");
-  async function getData(props) {
-    console.log("props",props);
+  async function getData() {
+    // console.log("typeOfNotes",typeOfNotes);
     const response = await getNotes();
     const arr = response.data.data.data;
-    setInfo(response.data.data.data);
-    console.log(response.data.data.data);
+    // setInfo(response.data.data.data);
+    // console.log(response.data.data.data);
 
-    if (props === "Notes") {
-      const newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === false)
+    if (typeOfNotes === "Notes") {
+      let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === false)
       setInfo(newArray)
       console.log("inside setinfo:",newArray);
     } 
-    else if (props === "Archieve") {
-      
-      const newArray = arr.filter((data) =>data.isArchived === true && data.isDeleted === false)
+    else if (typeOfNotes === "Archive") {
+      console.log("inside type of notes is archive:", typeOfNotes);
+      let newArray = arr.filter((data) =>data.isArchived === true && data.isDeleted === false)
       setInfo(newArray)
       console.log("inside setinfo:",newArray);
     } 
-    else if (props === "Delete") {
-      const newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === true)
+    else if (typeOfNotes === "Trash") {
+      let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === true)
       setInfo(newArray)
+      console.log("inside setinfo:",newArray);
     }
   }
 
@@ -76,7 +77,7 @@ function Dashboard({ NoteId }) {
     console.log("inside deleting");
     let note = { noteIdList: [NoteId], isDeleted: true }
     // console.log("noteIdList:", NoteId);
-    // console.log("data:",note);
+    console.log("data:",note);
     // console.log("inside api");
     const response = await Deleting(note)
     getData()
@@ -87,17 +88,25 @@ function Dashboard({ NoteId }) {
   async function UpdateArchive(NoteId) {
     console.log("inside update Archive");
     let note = { noteIdList: [NoteId], isArchived: true }
-    console.log(note);
+    console.log("data:",note);
     const response = await updateArchive(note)
     getData()
     console.log(response);
   }
 
+  //for permanent delete
+  async function permanentDeleting(NoteId) {
+    console.log("inside permanant deleting");
+    let note = { noteIdList: [NoteId], isDeleted: true }
+    const response = await PermanentDelete(note)
+    getData()
+    console.log(response);
+  }
   return (
     <div>
 
       <NavBar handleDrawer={handleDrawer} ChangeFlex={ChangeFlex} />
-      <MiniDrawer open={open} setTypeOfNotes={setTypeOfNotes} getData={getData} />
+      <MiniDrawer open={open} getData={getData} setTypeOfNotes ={setTypeOfNotes}/>
 
 
       {istoggle ? <TakeNoteOne showtoggle={showtoggle} /> : <TakeNoteTwo showtoggle={showtoggle} Submit={Submit} getData={getData} />}
@@ -125,3 +134,5 @@ function Dashboard({ NoteId }) {
 }
 
 export default Dashboard
+
+

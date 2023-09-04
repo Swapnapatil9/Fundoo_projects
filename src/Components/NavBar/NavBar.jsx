@@ -14,6 +14,10 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MoreIcon from '@mui/icons-material/MoreVert';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
 import './NavBar.css'
 
 const Search = styled('div')(({ theme }) => ({
@@ -25,9 +29,9 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: 'whitesmoke',
   },
   marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '60%',
-  [theme.breakpoints.up('sm')]: {
+  marginLeft: '10px',
+  width: '50%',textAlign:'left',height:'45px',
+  [theme.breakpoints.up('sm','md')]: {
     marginLeft: theme.spacing(3),
     // width: 'auto',
   },
@@ -51,41 +55,121 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('md','sm')]: {
       width: '20ch',
     },
   },
 }));
 
-function NavBar({ handleDrawer,ChangeFlex}) {
-  
+function NavBar({ handleDrawer, ChangeFlex }) {
+
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="normal"
+        >
+          <AccountCircleOutlinedIcon />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  );
+
   //grid Toggle
   const [gToggle, setgToggle] = React.useState(true)
   const GridToggle = () => {
     setgToggle(!gToggle)
   }
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar className='Appbar-container' position="fixed" sx={{ backgroundColor: "white" }}>
+    <Box sx={{ flexGrow: 1}}>
+      <AppBar className='Appbar-container' position="fixed" sx={{ backgroundColor: "white", display: { xs: 'block', sm: 'block'} }}>
         <Toolbar className='Toolbar-container'>
           <IconButton id='menu' size="large" edge="start" aria-label="open drawer" sx={{ mr: 2 }}>
-            <MenuIcon onClick={()=>handleDrawer()} />
+            <MenuIcon onClick={() => handleDrawer()} />
           </IconButton>
 
+          <img src='https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png' alt='keep' height={'40px'}></img>
           <Typography
-            variant="h6" id='text' noWrap sx={{ display: { xs: 'none', sm: 'block' } }}>
-            Reminders
+            variant="h6" id='text' noWrap sx={{ display: { xs: 'block', sm: 'block' } }}>
+            Keep
           </Typography>
 
-          <Search>
+          <Search  sx={{ display: { xs: 'none', sm: 'block' } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search', color: 'normal',textalign:'left' }} />
+            <StyledInputBase placeholder="Search…" inputProps={{ color: 'normal',textAlign:'left' }} />
           </Search>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex', sm:'block' } }}>
             <IconButton size="large" color="normal">
               < RefreshIcon />
             </IconButton>
@@ -102,13 +186,35 @@ function NavBar({ handleDrawer,ChangeFlex}) {
               <AppsOutlinedIcon />
             </IconButton>
 
-            <IconButton size="large">
+            <IconButton 
+            size="large"
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="normal"
+            >
               <AccountCircleOutlinedIcon />
             </IconButton>
-
+      <box  sx={{ display: { xs: 'block', md: 'flex', sm:'block' } }}>
+      <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="normal"
+            >
+              <MoreIcon />
+            </IconButton>
+      </box>
+           
           </Box>
         </Toolbar>
       </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
     </Box>
   );
 }

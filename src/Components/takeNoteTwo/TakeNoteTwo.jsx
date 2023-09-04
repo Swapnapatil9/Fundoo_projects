@@ -25,6 +25,7 @@ function TakeNoteTwo({ color, showtoggle ,getData}) {
     }
     const Submit = async () => {
         let response = await createNote(data)
+        console.log("inside submit");
         getData()
         console.log(response)
     }

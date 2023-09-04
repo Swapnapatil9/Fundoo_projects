@@ -55,8 +55,7 @@ const Drawer = styled(muiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-function MiniDrawer({ open, getData }) {
-
+function MiniDrawer({ open, getData, setTypeOfNotes}) {
   const navList = [
     { id: 1, name: 'Notes', icon: <LightbulbOutlinedIcon /> },
     { id: 2, name: 'Reminders', icon: <NotificationsOutlinedIcon /> },
@@ -66,9 +65,9 @@ function MiniDrawer({ open, getData }) {
   ]
 
   return (
-    <Box sx={{ display: 'flex', position: 'relative', border: '2px solid red' }}>
+    <Box sx={{  position: 'relative' ,display:{xs:'block', sm:'block'}}}>
 
-      <Drawer variant="permanent" className='drawer' open={open} sx={{ border: '2px solid red' }} >
+      <Drawer variant="permanent" className='drawer' open={open} >
 
         <List className='list'>
           { navList?.map(list => {
@@ -77,7 +76,7 @@ function MiniDrawer({ open, getData }) {
                   <ListItemIcon onClick={()=>getData(list.name)}>
                     {list.icon}
                   </ListItemIcon>
-                  <ListItemText primary={list.name} />
+                  <ListItemText primary={list.name} getData={getData}/>
                 </ListItem>
               )
             }

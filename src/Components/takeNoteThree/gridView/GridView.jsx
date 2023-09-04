@@ -14,19 +14,19 @@ function GridView({ color, notes, deleting, updateArchive ,getData}){
     return (
         <Grid className='maincontainer2' style={{ width: "245px", backgroundColor: notes.color}}>
 
-            <Grid container className='contents' spacing={2} >
-                <Grid item xs={9} className='headline' style={{ textAlign: 'left' }}>
+            <Grid container className='contents' spacing={1} style={{padding:'5px'}} >
+                <Grid item xs={10} className='headline' style={{ textAlign: 'left' }}>
                     <div>{notes.title}</div>
                 </Grid>
-                <Grid item xs={3} className='pin-icon'>
+                <Grid item xs={2} className='pin-icon'>
                     <PushPinOutlinedIcon id="icon">pin note</PushPinOutlinedIcon>
                 </Grid>
 
-                <Grid item xs={12} className='take-note' style={{ textAlign: 'left',marginLeft:'5px' }}>
+                <Grid item xs={12} className='take-note' style={{ textAlign: 'left'}}>
                     <div>{notes.description}</div>
                 </Grid>
 
-                <Grid item xs={12} className='miu-icons' style={{ textAlign: 'left',marginLeft:'5px'  }}>
+                <Grid item xs={12} className='miu-icons'>
                     <DoneOutlinedIcon />
                     <PersonAddAltOutlinedIcon />
                     <ColorPopper action='edit' getData={getData} NoteId={notes.id} color={color} />
