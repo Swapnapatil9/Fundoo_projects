@@ -14,7 +14,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./MiniDrawer.css"
 import { ListItemButton } from '@mui/material';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -66,7 +66,7 @@ function MiniDrawer({ open, getData, setTypeOfNotes }) {
   ]
 
   return (
-    <Box sx={{ position: 'relative', display: { xs: 'block', sm: 'block' } }}>
+    <Box sx={{ position: 'relative', display: { xs: 'block', sm: 'block' ,alignItems:'flex-start'} }}>
 
       <Drawer variant="permanent" className='drawer' open={open} >
 

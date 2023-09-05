@@ -9,8 +9,9 @@ import GridView from '../takeNoteThree/gridView/GridView'
 import GridList from '../takeNoteThree/gridList/GridList'
 import NavBar from '../NavBar/NavBar';
 import './DashBoard.css'
+import { useNavigate } from 'react-router-dom';
 
-function Dashboard({ NoteId }) {
+function Dashboard() {
   //toggled for takenote1 and takenote2
   const [istoggle, setToggle] = useState(true);
   const showtoggle = () => {
@@ -53,12 +54,12 @@ function Dashboard({ NoteId }) {
     if (typeOfNotes === "Notes") {
       let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === false)
       setInfo(newArray)
-    } 
+    }
     else if (typeOfNotes === "Archive") {
       console.log("inside type of notes is archive:", typeOfNotes);
-      let newArray = arr.filter((data) =>data.isArchived === true && data.isDeleted === false)
+      let newArray = arr.filter((data) => data.isArchived === true && data.isDeleted === false)
       setInfo(newArray)
-    } 
+    }
     else if (typeOfNotes === "Trash") {
       console.log("inside type of notes is delete:", typeOfNotes);
       let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === true)
@@ -71,14 +72,14 @@ function Dashboard({ NoteId }) {
     getData();
   }, [typeOfNotes])
 
-  
+
 
   //for delete
   async function deleting(NoteId) {
     console.log("inside deleting");
     let note = { noteIdList: [NoteId], isDeleted: true }
     // console.log("noteIdList:", NoteId);
-    console.log("data:",note);
+    console.log("data:", note);
     // console.log("inside api");
     const response = await Deleting(note)
     getData()
@@ -103,32 +104,46 @@ function Dashboard({ NoteId }) {
     getData()
     console.log(response);
   }
+
+  //for logout
+
+  // const historyNavigate = useNavigate();
+
+  // function handleLogout() {
+  //   localStorage.removeItem('authToken');
+  //   historyNavigate.push('/');
+  // }
+
+
   return (
-    <div>
+    <div className ='dashboard-container'>
 
       <NavBar handleDrawer={handleDrawer} ChangeFlex={ChangeFlex} />
-      <MiniDrawer open={open} getData={getData} setTypeOfNotes ={setTypeOfNotes}/>
+      <MiniDrawer open={open} getData={getData} setTypeOfNotes={setTypeOfNotes} />
 
+      <div className='middle-container'>
+        <div className='toggle-takenotes'>
+          {istoggle ? <TakeNoteOne showtoggle={showtoggle} /> : <TakeNoteTwo showtoggle={showtoggle} Submit={Submit} getData={getData} />}
+        </div>
 
-      {istoggle ? <TakeNoteOne showtoggle={showtoggle} /> : <TakeNoteTwo showtoggle={showtoggle} Submit={Submit} getData={getData} />}
-      <div className='toggle-grid'>
-        {gridFlex ? (
-          <div className="grid-view">
-            {
-              info.map((notes) =>
-                <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
-              )}
-          </div>
-        ) : (
-          <div className="list-view" >
-            {
-              info.map((notes) =>
-                <GridList notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
-              )}
-          </div>
-        )}
+        <div className='toggle-grid'>
+          {gridFlex ? (
+            <div className="grid-view">
+              {
+                info.map((notes) =>
+                  <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
+                )}
+            </div>
+          ) : (
+            <div className="list-view" >
+              {
+                info.map((notes) =>
+                  <GridList notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
+                )}
+            </div>
+          )}
+        </div>
       </div>
-
     </div>
 
   )

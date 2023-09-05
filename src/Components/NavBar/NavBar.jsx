@@ -61,7 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function NavBar({ handleDrawer, ChangeFlex }) {
+function NavBar({ handleDrawer, ChangeFlex , handleLogout}) {
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -105,7 +105,7 @@ function NavBar({ handleDrawer, ChangeFlex }) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={()=>{handleMenuClose(); handleLogout()}}>Log Out</MenuItem>
     </Menu>
   );
 
@@ -149,15 +149,15 @@ function NavBar({ handleDrawer, ChangeFlex }) {
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className='Appbar-container' position="fixed" sx={{ backgroundColor: "white", display: { xs: 'block', sm: 'block' } }}>
-        <Toolbar className='Toolbar-container'>
-          <IconButton id='menu' size="large" edge="start" aria-label="open drawer" sx={{ mr: 2 }}>
+      <AppBar className='Appbar-container' position="fixed" sx={{ backgroundColor: "white", display: { xs: 'block', sm: 'block' }}}>
+        <Toolbar className='Toolbar-container' >
+          <IconButton id='menu' size="large" >
             <MenuIcon onClick={() => handleDrawer()} />
           </IconButton>
-
+          
           <img src='https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png' alt='keep' height={'40px'}></img>
           <Typography
-            variant="h6" id='text' noWrap sx={{ display: { xs: 'block', sm: 'block' } }}>
+            variant="h6" id='text' noWrap sx={{ display: { xs: 'block', sm: 'none', md:'flex' } }}>
             Keep
           </Typography>
 
@@ -168,8 +168,7 @@ function NavBar({ handleDrawer, ChangeFlex }) {
             <StyledInputBase placeholder="Search…" inputProps={{ color: 'normal', textAlign: 'left' }} />
           </Search>
 
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'flex', md:'flex' }, marginLeft:'200px'}}>
             <IconButton size="large" color="normal">
               < RefreshIcon />
             </IconButton>
@@ -182,13 +181,13 @@ function NavBar({ handleDrawer, ChangeFlex }) {
               <SettingsOutlinedIcon />
             </IconButton>
 
-            <IconButton id='app-icon' size="large" color="normal">
+            <IconButton id='app-icon' size="large" color="normal" >
               <AppsOutlinedIcon />
             </IconButton>
 
             <IconButton
               size="large"
-              edge="end"
+              // edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
@@ -197,6 +196,8 @@ function NavBar({ handleDrawer, ChangeFlex }) {
             >
               <AccountCircleOutlinedIcon />
             </IconButton>
+          </Box>
+          <Box sx={{ display: { xs: 'block', md: 'none', sm:'none'} , marginLeft:'750px'}}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -207,7 +208,7 @@ function NavBar({ handleDrawer, ChangeFlex }) {
             >
               <MoreIcon />
             </IconButton>
-          </Box>
+            </Box>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
