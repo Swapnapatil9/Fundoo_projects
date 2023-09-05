@@ -12,6 +12,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./MiniDrawer.css"
+import { ListItemButton } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -55,7 +56,7 @@ const Drawer = styled(muiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-function MiniDrawer({ open, getData, setTypeOfNotes}) {
+function MiniDrawer({ open, getData, setTypeOfNotes }) {
   const navList = [
     { id: 1, name: 'Notes', icon: <LightbulbOutlinedIcon /> },
     { id: 2, name: 'Reminders', icon: <NotificationsOutlinedIcon /> },
@@ -65,23 +66,25 @@ function MiniDrawer({ open, getData, setTypeOfNotes}) {
   ]
 
   return (
-    <Box sx={{  position: 'relative' ,display:{xs:'block', sm:'block'}}}>
+    <Box sx={{ position: 'relative', display: { xs: 'block', sm: 'block' } }}>
 
       <Drawer variant="permanent" className='drawer' open={open} >
 
         <List className='list'>
-          { navList?.map(list => {
-              return (
-                <ListItem id='hovericon' key={list.id}>
-                  <ListItemIcon onClick={()=>getData(list.name)}>
+          {navList?.map(list => {
+            return (
+              <ListItem id='hovericon' key={list.id}>
+                <ListItemButton onClick={() => setTypeOfNotes(list.name)}>
+                  <ListItemIcon>
                     {list.icon}
                   </ListItemIcon>
-                  <ListItemText primary={list.name} getData={getData}/>
-                </ListItem>
-              )
-            }
+                  <ListItemText primary={list.name} getData={getData} />
+                </ListItemButton>
+              </ListItem>
+            )
+          }
 
-            )}
+          )}
         </List>
       </Drawer>
     </Box>

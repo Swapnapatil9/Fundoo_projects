@@ -30,8 +30,8 @@ const Search = styled('div')(({ theme }) => ({
   },
   marginRight: theme.spacing(2),
   marginLeft: '10px',
-  width: '50%',textAlign:'left',height:'45px',
-  [theme.breakpoints.up('sm','md')]: {
+  width: '50%', textAlign: 'left', height: '45px',
+  [theme.breakpoints.up('sm', 'md')]: {
     marginLeft: theme.spacing(3),
     // width: 'auto',
   },
@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md','sm')]: {
+    [theme.breakpoints.up('md', 'sm')]: {
       width: '20ch',
     },
   },
@@ -126,7 +126,7 @@ function NavBar({ handleDrawer, ChangeFlex }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -148,8 +148,8 @@ function NavBar({ handleDrawer, ChangeFlex }) {
     setgToggle(!gToggle)
   }
   return (
-    <Box sx={{ flexGrow: 1}}>
-      <AppBar className='Appbar-container' position="fixed" sx={{ backgroundColor: "white", display: { xs: 'block', sm: 'block'} }}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar className='Appbar-container' position="fixed" sx={{ backgroundColor: "white", display: { xs: 'block', sm: 'block' } }}>
         <Toolbar className='Toolbar-container'>
           <IconButton id='menu' size="large" edge="start" aria-label="open drawer" sx={{ mr: 2 }}>
             <MenuIcon onClick={() => handleDrawer()} />
@@ -161,15 +161,15 @@ function NavBar({ handleDrawer, ChangeFlex }) {
             Keep
           </Typography>
 
-          <Search  sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Search sx={{ display: { xs: 'none', sm: 'block' } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ color: 'normal',textAlign:'left' }} />
+            <StyledInputBase placeholder="Search…" inputProps={{ color: 'normal', textAlign: 'left' }} />
           </Search>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex', sm:'block' } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             <IconButton size="large" color="normal">
               < RefreshIcon />
             </IconButton>
@@ -186,19 +186,18 @@ function NavBar({ handleDrawer, ChangeFlex }) {
               <AppsOutlinedIcon />
             </IconButton>
 
-            <IconButton 
-            size="large"
-            edge="end"
-            aria-label="account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="normal"
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="normal"
             >
               <AccountCircleOutlinedIcon />
             </IconButton>
-      <box  sx={{ display: { xs: 'block', md: 'flex', sm:'block' } }}>
-      <IconButton
+            <IconButton
               size="large"
               aria-label="show more"
               aria-controls={mobileMenuId}
@@ -208,8 +207,6 @@ function NavBar({ handleDrawer, ChangeFlex }) {
             >
               <MoreIcon />
             </IconButton>
-      </box>
-           
           </Box>
         </Toolbar>
       </AppBar>
