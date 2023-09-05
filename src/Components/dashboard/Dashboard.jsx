@@ -45,32 +45,33 @@ function Dashboard({ NoteId }) {
   const [typeOfNotes, setTypeOfNotes] = useState("Notes");
   async function getData() {
     // console.log("typeOfNotes",typeOfNotes);
-    const response = await getNotes();
-    const arr = response.data.data.data;
+    let response = await getNotes();
+    let arr = response.data.data.data;
     // setInfo(response.data.data.data);
     // console.log(response.data.data.data);
 
     if (typeOfNotes === "Notes") {
       let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === false)
       setInfo(newArray)
-      console.log("inside setinfo:",newArray);
     } 
     else if (typeOfNotes === "Archive") {
       console.log("inside type of notes is archive:", typeOfNotes);
       let newArray = arr.filter((data) =>data.isArchived === true && data.isDeleted === false)
       setInfo(newArray)
-      console.log("inside setinfo:",newArray);
     } 
     else if (typeOfNotes === "Trash") {
+      console.log("inside type of notes is delete:", typeOfNotes);
       let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === true)
       setInfo(newArray)
-      console.log("inside setinfo:",newArray);
     }
   }
+  console.log(info);
 
   useEffect(() => {
     getData();
-  }, [])
+  }, [typeOfNotes])
+
+  
 
   //for delete
   async function deleting(NoteId) {
@@ -88,7 +89,7 @@ function Dashboard({ NoteId }) {
   async function UpdateArchive(NoteId) {
     console.log("inside update Archive");
     let note = { noteIdList: [NoteId], isArchived: true }
-    console.log("data:",note);
+    // console.log("data:",note);
     const response = await updateArchive(note)
     getData()
     console.log(response);
