@@ -1,6 +1,5 @@
 .main-container {
-    margin: 100px;
-    margin-left: 350px;
+    margin: 100px 0px 50px 170px;
 }
 
 .main-contents {
@@ -11,7 +10,7 @@
     box-shadow: 2px 2px 2px 2px rgb(184, 176, 176);
     border-radius: 10px;
     width: 90vh;
-    height: 25vh;
+    /* height: 25vh; */
     /* border: 2px solid red; */
 }
 
