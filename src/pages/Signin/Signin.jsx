@@ -48,6 +48,7 @@ function Signin() {
       localStorage.setItem("token", response.data.id);
       console.log(response.data.id);
     }
+    window.location.reload();
   }
 
   return (

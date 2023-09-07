@@ -1,5 +1,5 @@
-.main-container {
-    margin: 100px 0px 50px 170px;
+.main-container2 {
+    margin: 100px 100px 50px 170px;
 }
 
 .main-contents {
@@ -9,7 +9,7 @@
     align-items: center;
     box-shadow: 2px 2px 2px 2px rgb(184, 176, 176);
     border-radius: 10px;
-    width: 90vh;
+    width: 90vw;
     /* height: 25vh; */
     /* border: 2px solid red; */
 }
@@ -89,3 +89,12 @@ textarea {
     font-size: 15px;
     margin-right: 30px;
 }
+/* @media (max-width:768px){
+    .main-container {
+        margin: 100px 0px 30px;
+    }
+    .main-contents {
+    width: 50vw;
+    height: 10vh;
+    }
+} */

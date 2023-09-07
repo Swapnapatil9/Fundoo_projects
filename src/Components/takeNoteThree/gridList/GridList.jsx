@@ -11,7 +11,7 @@ import ColorPopper from '../../Popper/ColorPopper';
 
 function GridList({ color, notes, deleting, updateArchive, getData}) {
   return (
-    <Grid container className='main-container2' style={{ width: "600px", backgroundColor: notes.color}}>
+    <Grid container className='main-container4' style={{ width: "600px", backgroundColor: notes.color}}>
 
       <Grid container className='contents' spacing={2}>
         <Grid item xs={11} className='headline' style={{ textAlign: 'left' }}>

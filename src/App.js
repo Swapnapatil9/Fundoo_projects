@@ -1,17 +1,17 @@
 import './App.css';
-// import AuthRoute from './router/AuthRoute'
-// import ProtectedRoute from './router/ProtectedRoute'
-// import Signin from './pages/Signin/Signin'
-// import Signup from './pages/Signup/Signup'
+import AuthRoute from './router/AuthRoute'
+import ProtectedRoute from './router/ProtectedRoute'
+import Signin from './pages/Signin/Signin'
+import Signup from './pages/Signup/Signup'
 import Dashboard from './Components/dashboard/Dashboard';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
 function App() {
   return (
     <div className="App">
 
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes >
 
           <Route exact path={"/"} element={<AuthRoute><Signin /></AuthRoute>} />
@@ -19,9 +19,9 @@ function App() {
           <Route path={"/Dashboard"} element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         </Routes>
 
-      </BrowserRouter> */}
+      </BrowserRouter>
 
-      <Dashboard />
+      {/* <Dashboard /> */}
       {/* <Signin/> */}
       {/* <Signup/> */}
 

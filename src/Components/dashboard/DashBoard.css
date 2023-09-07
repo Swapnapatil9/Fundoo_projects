@@ -1,15 +1,23 @@
 .middle-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 75vw;
     height: 100vh;
     /* border: 2px solid red; */
     margin-left: 200px;
+    /* margin-top: 100px; */
 }
 
 .toggle-takenotes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: auto;
+    margin-bottom: 100px;
+    margin-top: 50px;
     /* border: 2px solid black; */
 }
 

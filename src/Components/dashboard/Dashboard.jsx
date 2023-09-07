@@ -9,7 +9,6 @@ import GridView from '../takeNoteThree/gridView/GridView'
 import GridList from '../takeNoteThree/gridList/GridList'
 import NavBar from '../NavBar/NavBar';
 import './DashBoard.css'
-import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   //toggled for takenote1 and takenote2
@@ -105,20 +104,19 @@ function Dashboard() {
     console.log(response);
   }
 
-  //for logout
+  // for logout
 
-  // const historyNavigate = useNavigate();
-
-  // function handleLogout() {
-  //   localStorage.removeItem('authToken');
-  //   historyNavigate.push('/');
-  // }
-
+  const [] = useState("");
+  function handleLogout() {
+    console.log("inside logout");
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 
   return (
     <div className ='dashboard-container'>
 
-      <NavBar handleDrawer={handleDrawer} ChangeFlex={ChangeFlex} />
+      <NavBar handleDrawer={handleDrawer} ChangeFlex={ChangeFlex} handleLogout={handleLogout}/>
       <MiniDrawer open={open} getData={getData} setTypeOfNotes={setTypeOfNotes} />
 
       <div className='middle-container'>
