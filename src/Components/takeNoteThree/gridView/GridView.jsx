@@ -12,7 +12,7 @@ import ColorPopper from '../../Popper/ColorPopper';
 function GridView({ color, notes, deleting, updateArchive ,getData}){ 
     
     return (
-        <Grid className='maincontainer2' style={{ width: "245px", backgroundColor: notes.color}}>
+        <Grid className='maincontainer3' style={{ width: "245px", backgroundColor: notes.color}}>
 
             <Grid container className='contents' spacing={1} style={{padding:'5px'}} >
                 <Grid item xs={10} className='headline' style={{ textAlign: 'left' }}>

@@ -49,12 +49,37 @@ input {
 }
 
 @media (max-width:768px){
-    .main-container{
+    /* .main-container{
         width:650px;
-    }
+    } */
 
     .grid-content{
         display: flex;
-        width: 70vh;
+        width: 50vw;
     }
+    .notes {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        height: 100%;
+        
+    }
+    
+    .new-list {
+        width: 10%;
+        height: 100%;
+    }
+    
+    .new-note1 {
+        width: 10%;
+        height: 100%;
+    }
+    
+    .new-note2 {
+        width: 10%;
+        height: 100%;
+    }
+    
 }

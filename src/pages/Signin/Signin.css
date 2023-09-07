@@ -44,9 +44,9 @@ form {
     size: 50px;
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     form {
         width: 80%;
         margin:20px;
     }
-}
+} */

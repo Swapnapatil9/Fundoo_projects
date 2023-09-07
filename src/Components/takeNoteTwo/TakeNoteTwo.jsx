@@ -32,7 +32,7 @@ function TakeNoteTwo({ color, showtoggle ,getData}) {
 
     return (
         <div >
-                <Grid container className='main-container' style={{ width: "650px" }}>
+                <Grid container className='main-container2' style={{ width: "650px" }}>
                 <Grid container className='main-contents' spacing={2} style={{ backgroundColor: data.color}}>
 
                     <Grid item xs={12} className='top-content'>

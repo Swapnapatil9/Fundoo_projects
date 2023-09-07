@@ -194,7 +194,7 @@ function NavBar({ handleDrawer, ChangeFlex , handleLogout}) {
               onClick={handleProfileMenuOpen}
               color="normal"
             >
-              <AccountCircleOutlinedIcon />
+              <AccountCircleOutlinedIcon handleLogout={handleLogout}/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'block', md: 'none', sm:'none'} , marginLeft:'750px'}}>
