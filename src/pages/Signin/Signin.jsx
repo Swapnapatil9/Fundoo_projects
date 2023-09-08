@@ -54,7 +54,7 @@ function Signin() {
   return (
     <Grid container className='grid-container' justifyContent="center" alignItems="center" style={{ paddingTop: 50 }}>
       <Grid item xs={12} sm={6} md={4}>
-        <Paper elevation={3} style={{  width: "350px" }}>
+        <Paper elevation={1} style={{  width: "350px" }}>
           <form>
             <Grid container spacing={2}>
               <Grid item className='imgbox' xs={12}>
@@ -90,7 +90,7 @@ function Signin() {
               </Grid>
               <div className="bottom">
                 <Grid item id='text' xs={12}>
-                  <item>Create Account</item>
+                  <item >Create Account</item>
                 </Grid>
                 <Grid item id='button' xs={3}>
                   <Button className='button' variant="contained" color="primary" onClick={Submit} fullWidth>

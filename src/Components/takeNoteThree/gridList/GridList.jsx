@@ -9,7 +9,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridList.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridList({ color, notes, deleting, updateArchive, getData}) {
+function GridList({ color, notes, deleting, updateArchive, getData, permanentDeleting}) {
   return (
     <Grid container className='main-container4' style={{ width: "600px", backgroundColor: notes.color}}>
 
@@ -31,7 +31,7 @@ function GridList({ color, notes, deleting, updateArchive, getData}) {
           <ColorPopper action='edit' NoteId={notes.id} color={color} getData={getData}/>
           <InsertPhotoOutlinedIcon />
           <ArchiveOutlinedIcon NoteId={notes.id} onClick={()=>updateArchive(notes.id)}/>
-          <DeleteOutlinedIcon NoteId={notes.id} onClick={()=>deleting(notes.id)}/>
+          <DeleteOutlinedIcon NoteId={notes.id} onClick={()=>{deleting(notes.id); permanentDeleting(notes.id)}}/>
         </Grid>
       </Grid>
     </Grid>

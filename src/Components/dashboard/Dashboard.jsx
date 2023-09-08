@@ -78,7 +78,7 @@ function Dashboard() {
     console.log("inside deleting");
     let note = { noteIdList: [NoteId], isDeleted: true }
     // console.log("noteIdList:", NoteId);
-    console.log("data:", note);
+    // console.log("data:", note);
     // console.log("inside api");
     const response = await Deleting(note)
     getData()
@@ -97,16 +97,15 @@ function Dashboard() {
 
   //for permanent delete
   async function permanentDeleting(NoteId) {
-    console.log("inside permanant deleting");
-    let note = { noteIdList: [NoteId], isDeleted: true }
+    console.log("inside permanant deleting", NoteId);
+    let note = { noteIdList: [NoteId], isDeleted: false ,isArchived:false}
+    console.log("inside permanent delete", note);
     const response = await PermanentDelete(note)
     getData()
     console.log(response);
   }
 
   // for logout
-
-  const [] = useState("");
   function handleLogout() {
     console.log("inside logout");
     localStorage.removeItem('token');
@@ -129,14 +128,14 @@ function Dashboard() {
             <div className="grid-view">
               {
                 info.map((notes) =>
-                  <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
+                  <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} permanentDeleting={permanentDeleting} />
                 )}
             </div>
           ) : (
             <div className="list-view" >
               {
                 info.map((notes) =>
-                  <GridList notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
+                  <GridList notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} permanentDeleting={permanentDeleting}/>
                 )}
             </div>
           )}

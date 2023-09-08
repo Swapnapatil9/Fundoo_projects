@@ -31,6 +31,6 @@ export const Deleting = async (obj) => {
     return response
 }
 export const PermanentDelete = async(obj) =>{
-    let response = await axios.post("http://fundoonotes.incubation.bridgelabz.com/api/notes/notes_prototype_destroyById_user_accessTokens",obj,headerConfig)
+    let response = await axios.post("http://fundoonotes.incubation.bridgelabz.com/notes/notes_deleteForeverNotes",obj,headerConfig)
     return response
 }
