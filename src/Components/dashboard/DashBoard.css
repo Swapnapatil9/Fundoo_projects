@@ -29,8 +29,10 @@
 .grid-view {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    /* gap: 2; */
+    padding-right: 50px;
 }
 
 @media (max-width: 768px) {
