@@ -101,14 +101,6 @@ function Dashboard() {
     console.log(response);
   }
 
-  const [isDeleted, setIsDeleted] = useState(true)
-  const typesOfDelete = () => {
-    setIsDeleted(!isDeleted)
-  }
-
-
-  // {isDeleted ? deleting() :permanentDeleting()}
-
   // for logout
   const navigate = useNavigate();
   function handleLogout() {
@@ -134,12 +126,9 @@ function Dashboard() {
           {gridFlex ? (
             <div className="grid-view">
               {
-                info.map((notes) => {return(
-                  isDeleted ?
-                    <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} />
-                    : <GridView notes={notes} getData={getData} updateArchive={UpdateArchive} permanentDeleting={permanentDeleting} />
-                )}
-                )}
+                info.map((notes) => 
+                    <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} permanentDeleting={permanentDeleting} />
+                  )}
             </div>
           ) : (
             <div className="list-view" >
