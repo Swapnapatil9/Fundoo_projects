@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Grid, Button, TextField } from '@mui/material';
 import "../Signup/Signup.css"
 import { signup } from '../../Services/UserServices';
+import {Link, useNavigate} from "react-router-dom"
 
 function Signup() {
   const [user, setUser] = useState({ firstName: '', lastName: '', username: '', password: '', confirmpassword: '', service: 'advance' })
@@ -54,6 +55,7 @@ const setConfirmPassword = (e) => {
   })
 
   const Submit = async () => {
+
     console.log("user" + user.firstName + user.lastName + user.email + user.password + user.confirmpassword)
 
     let FirstnameTest = NameRegex.test(user.firstName);
@@ -123,6 +125,8 @@ const setConfirmPassword = (e) => {
       let response = await signup(user)
       console.log(response);
     }
+    const navigate = useNavigate();
+    navigate('/')
   }
 
 
@@ -199,7 +203,8 @@ const setConfirmPassword = (e) => {
 
             <Grid container>
               <Grid item xs={6} id="signin-txt">
-                <p>Sign in insted </p>
+              <Link to ="/"> Sign in insted </Link>
+                {/* <p>Sign in insted </p> */}
               </Grid>
               <Grid item xs={6} style={{ textAlign: 'right' }}>
                 <Button variant="contained" onClick={Submit} color="primary">

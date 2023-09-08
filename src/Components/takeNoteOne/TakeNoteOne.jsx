@@ -11,7 +11,7 @@ function TakeNoteOne({showtoggle}) {
         <Grid container className='main-container1' style={{ width: "650px" }}>
             <Grid item className="grid-content" xs={12}>
                 <Grid item xs={9} className='notes'>
-                <input placeholder='Take a note...' onClick={showtoggle}></input>
+                <input id='input' placeholder='Take a note...' onClick={showtoggle}></input>
                 </Grid>
                 <Grid item xs={1} className='new-list'>
                 <CheckBoxOutlinedIcon id="icon">New List</CheckBoxOutlinedIcon>

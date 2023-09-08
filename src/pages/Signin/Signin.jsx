@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Button, TextField, Paper } from '@mui/material';
 import "./Signin.css"
 import { signin } from '../../Services/UserServices';
-
+import {Link, useNavigate} from "react-router-dom"
 
 function Signin() {
   const [user, setUser] = useState({ email: '', password: '' })
@@ -22,11 +22,13 @@ function Signin() {
   const setPassword = (e) => {
     setUser({ ...user, password: e.target.value })
   }
+  const navigate = useNavigate();
 
   const Submit = async () => {
     console.log(user);
     let emailTest = emailRegex.test(user.email);
     let passwordTest = passwordRegex.test(user.password);
+    
     
     if (emailTest === false) {
       setCheckError({
@@ -48,7 +50,9 @@ function Signin() {
       localStorage.setItem("token", response.data.id);
       console.log(response.data.id);
     }
-    window.location.reload();
+    // window.location.reload();
+    navigate("/dashboard")
+
   }
 
   return (
@@ -90,7 +94,8 @@ function Signin() {
               </Grid>
               <div className="bottom">
                 <Grid item id='text' xs={12}>
-                  <item >Create Account</item>
+                  <Link to ="/signup"> create acount</Link>
+                  {/* <item >Create Account</item> */}
                 </Grid>
                 <Grid item id='button' xs={3}>
                   <Button className='button' variant="contained" color="primary" onClick={Submit} fullWidth>

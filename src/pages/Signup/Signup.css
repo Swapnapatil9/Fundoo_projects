@@ -13,7 +13,7 @@
     justify-content: center;
     border: 3px solid whitesmoke;
     width: 60%;
-    height: 80%;
+    height: 100%;
     padding: 20px;
     border-radius: 10px;
 }
@@ -80,7 +80,7 @@ form {
 }
 
 #signin-txt {
-    color: blue;
+    /* color: blue; */
     text-Align: left;
     font-Size: 13px;
     /* border:1px solid black; */
