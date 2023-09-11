@@ -197,7 +197,7 @@ function NavBar({ handleDrawer, ChangeFlex , handleLogout}) {
               <AccountCircleOutlinedIcon handleLogout={handleLogout}/>
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: 'block', md: 'none', sm:'none'} , marginLeft:'750px'}}>
+          <Box sx={{ display: { xs: 'block', md: 'none', sm:'none'} , marginLeft:'300px'}}>
             <IconButton
               size="large"
               aria-label="show more"

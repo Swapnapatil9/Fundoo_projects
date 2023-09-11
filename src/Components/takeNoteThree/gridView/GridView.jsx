@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid } from '@mui/material'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
-// import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
@@ -9,12 +8,8 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridView.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridView({ color, notes, deleting, updateArchive, getData, permanentDeleting }) {
-    const [isToggle, setIsToggle] = useState(false);
-    const dataDeleting = () => {
-        setIsToggle(!isToggle)
-    }
-
+function GridView({ color, notes, deleting, updateArchive, getData, permanentDeleting, dataDeleting}) {
+    // console.log("GRID",notes);
     return (
         <Grid className='maincontainer3' style={{ width: "245px", backgroundColor: notes.color }}>
 
@@ -30,22 +25,14 @@ function GridView({ color, notes, deleting, updateArchive, getData, permanentDel
                     <div>{notes.description}</div>
                 </Grid>
 
-                {isToggle ?
+                
                     <Grid item xs={12} className='miu-icons'>
                         <PersonAddAltOutlinedIcon />
                         <ColorPopper action='edit' getData={getData} NoteId={notes.id} color={color} />
                         <InsertPhotoOutlinedIcon />
                         <ArchiveOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => updateArchive(notes.id)} />
-                        <DeleteOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => {deleting(notes.id)}} />
-                    </Grid> :
-                    <Grid item xs={12} className='miu-icons'>
-                        <PersonAddAltOutlinedIcon />
-                        <ColorPopper action='edit' getData={getData} NoteId={notes.id} color={color} />
-                        <InsertPhotoOutlinedIcon />
-                        <ArchiveOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => updateArchive(notes.id)} />
-                        <DeleteOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => {permanentDeleting(notes.id)}} />
+                        <DeleteOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => dataDeleting(notes.id)} />
                     </Grid>
-                }
             </Grid>
         </Grid>
 

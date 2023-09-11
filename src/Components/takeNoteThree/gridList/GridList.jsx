@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid } from '@mui/material'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
-import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+// import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
@@ -11,7 +11,7 @@ import ColorPopper from '../../Popper/ColorPopper';
 
 function GridList({ color, notes, deleting, updateArchive, getData, permanentDeleting }) {
 
-  const [isToggle, setIsToggle] = useState(false);
+  const [isToggle, setIsToggle] = useState(true);
   const dataDeleting = () => {
     setIsToggle(!isToggle)
   }
