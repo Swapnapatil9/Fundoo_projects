@@ -15,14 +15,14 @@ function Dashboard() {
   //toggled for takenote1 and takenote2
   const [istoggle, setToggle] = useState(true);
   const showtoggle = () => {
-    console.log('toggle called');
+    // //.log('toggle called');
     setToggle(!istoggle)
   }
 
   //open close for menu icon
   const [open, setOpen] = useState(false);
   const handleDrawer = () => {
-    console.log('call Drawer');
+    //.log('call Drawer');
     setOpen(!open)
   }
 
@@ -35,9 +35,9 @@ function Dashboard() {
   //for create data
   const [data, setData] = useState("")
   async function Submit() {
-    console.log('inside submit');
+    //.log('inside submit');
     const response = await createNote(data);
-    console.log(response);
+    //.log(response);
     setData(response);
   }
 
@@ -47,26 +47,27 @@ function Dashboard() {
   async function getData() {
     let response = await getNotes();
     let arr = response.data.data.data;
-    // setInfo(response.data.data.data);
-    // console.log(response.data.data.data);
+    setInfo(response.data.data.data);
+    // //.log(response.data.data.data);
 
     if (typeOfNotes === "Notes") {
-      console.log("Type of notes is:", typeOfNotes);
+      //.log("Type of notes is:", typeOfNotes);
       let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === false)
       setInfo(newArray)
     }
     else if (typeOfNotes === "Archive") {
-      console.log("Type of notes is:", typeOfNotes);
+      //.log("Type of notes is:", typeOfNotes);
       let newArray = arr.filter((data) => data.isArchived === true && data.isDeleted === false)
       setInfo(newArray)
     }
     else if (typeOfNotes === "Trash") {
-      console.log("Type of notes is:", typeOfNotes);
-      let newArray = arr.filter((data) => data.isArchived === false && data.isDeleted === true)
+      //.log("Type of notes in trash is:", typeOfNotes, arr);
+      let newArray = arr.filter((data) => data.isArchived === true && data.isDeleted === true)
+      //.log("trash notes", newArray);
       setInfo(newArray)
     }
   }
-  console.log(info);
+  //.log(info);
 
   useEffect(() => {
     getData();
@@ -75,18 +76,18 @@ function Dashboard() {
 
 
   //for delete
-  async function deleting(NoteId) {
-    let note = { noteIdList: [NoteId], isDeleted: true }
-    console.log("inside deleting", note);
+  async function deleting(noteId) {
+    let note = { noteIdList: [noteId], isArchived: false, isDeleted: true }
+    //.log("inside deleting", note);
     const response = await Deleting(note)
     getData()
     console.log(response);
   }
 
   //for Archive
-  async function UpdateArchive(NoteId) {
-    console.log("inside update Archive");
-    let note = { noteIdList: [NoteId], isArchived: true }
+  async function UpdateArchive(noteId) {
+    //.log("inside update Archive");
+    let note = { noteIdList: [noteId], isArchived: true, isDeleted: false }
     const response = await updateArchive(note)
     getData()
     console.log(response);
@@ -94,23 +95,30 @@ function Dashboard() {
 
   //for permanent delete
   async function permanentDeleting(NoteId) {
-    let note = { noteIdList: [NoteId], isDeleted: false, isArchived: false }
-    console.log("inside permanent delete", note);
+    let note = { noteIdList: [NoteId] }
+    //.log("inside permanent delete", note);
     const response = await PermanentDelete(note)
     getData()
     console.log(response);
   }
 
+
+  const dataDeleting = (id) => {
+    //.log("inside dataDeleting type of notes is:", typeOfNotes, id,data.isArchived);
+
+    (typeOfNotes === 'Trash') ? permanentDeleting(id) : deleting(id)
+  }
+
   // for logout
   const navigate = useNavigate();
   function handleLogout() {
-    console.log("inside logout");
+    //.log("inside logout");
     localStorage.removeItem('token');
     // window.location.reload();
     navigate('/');
 
   }
-
+  // //.log("info",info);
   return (
     <div className='dashboard-container'>
 
@@ -126,9 +134,9 @@ function Dashboard() {
           {gridFlex ? (
             <div className="grid-view">
               {
-                info.map((notes) => 
-                    <GridView notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} permanentDeleting={permanentDeleting} />
-                  )}
+                info.map((notes) =>
+                  <GridView notes={notes} getData={getData} updateArchive={UpdateArchive} dataDeleting={dataDeleting} />
+                )}
             </div>
           ) : (
             <div className="list-view" >
