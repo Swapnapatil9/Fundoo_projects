@@ -8,7 +8,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./GridView.css"
 import ColorPopper from '../../Popper/ColorPopper';
 
-function GridView({ color, notes, deleting, updateArchive, getData, permanentDeleting, dataDeleting}) {
+function GridView({ color, notes, updateArchive, getData, dataDeleting }) {
     // console.log("GRID",notes);
     return (
         <Grid className='maincontainer3' style={{ width: "245px", backgroundColor: notes.color }}>
@@ -25,14 +25,14 @@ function GridView({ color, notes, deleting, updateArchive, getData, permanentDel
                     <div>{notes.description}</div>
                 </Grid>
 
-                
-                    <Grid item xs={12} className='miu-icons'>
-                        <PersonAddAltOutlinedIcon />
-                        <ColorPopper action='edit' getData={getData} NoteId={notes.id} color={color} />
-                        <InsertPhotoOutlinedIcon />
-                        <ArchiveOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => updateArchive(notes.id)} />
-                        <DeleteOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => dataDeleting(notes.id)} />
-                    </Grid>
+
+                <Grid item xs={12} className='miu-icons'>
+                    <PersonAddAltOutlinedIcon />
+                    <ColorPopper action='edit' getData={getData} NoteId={notes.id} color={color} />
+                    <InsertPhotoOutlinedIcon />
+                    <ArchiveOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => updateArchive(notes.id)} />
+                    <DeleteOutlinedIcon NoteId={notes.id} getData={getData} onClick={() => dataDeleting(notes.id)} />
+                </Grid>
             </Grid>
         </Grid>
 

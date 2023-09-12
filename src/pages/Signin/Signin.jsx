@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Button, TextField, Paper } from '@mui/material';
 import "./Signin.css"
 import { signin } from '../../Services/UserServices';
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function Signin() {
   const [user, setUser] = useState({ email: '', password: '' })
@@ -28,8 +28,8 @@ function Signin() {
     console.log(user);
     let emailTest = emailRegex.test(user.email);
     let passwordTest = passwordRegex.test(user.password);
-    
-    
+
+
     if (emailTest === false) {
       setCheckError({
         EmailTrue: true,
@@ -56,22 +56,22 @@ function Signin() {
   }
 
   return (
-    <Grid container className='grid-container' justifyContent="center" alignItems="center" style={{ paddingTop: 50 }}>
+    <Grid container className='grid-container-main' justifyContent="center" alignItems="center" style={{ margin: '20px', width: '80vw' }}>
       <Grid item xs={12} sm={6} md={4}>
-        <Paper elevation={1} style={{  width: "350px" }}>
-          <form>
-            <Grid container spacing={2}>
-              <Grid item className='imgbox' xs={12}>
-                <img id='image' alt='googleimage' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzu62FtiC9pRISshReCCvYa96pImQRg2dkcw&usqp=CAU' />
+        <Paper className='paper-container' elevation={2}>
+          <form className='form'>
+            <Grid container className='grid-container' spacing={2}>
+              {/* <Grid item className='img-box' xs={12} sm={6}> */}
+                <img id='img' alt='googleimage' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzu62FtiC9pRISshReCCvYa96pImQRg2dkcw&usqp=CAU' />
+              {/* </Grid> */}
+              <Grid item xs={12} id='text1'>
+                <p>Login</p>
               </Grid>
-              <Grid item xs={12} style={{ fontSize: 20 }}>
-                <item>Login</item>
-              </Grid>
-              <Grid item xs={12} style={{ fontSize: 15, paddingTop: 5 }}>
-                <item>Use your Google Account</item>
+              <Grid item xs={12} id='text2'>
+                <p>Use your Google Account</p>
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Email"
+                <TextField id='email-text' label="Email"
                   name='email'
                   value={user.email}
                   onChange={setName}
@@ -80,7 +80,7 @@ function Signin() {
                   fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Password"
+                <TextField id='password-text' label="Password"
                   type="password"
                   name='password'
                   value={user.password}
@@ -89,13 +89,12 @@ function Signin() {
                   helperText={checkError.PasswordError}
                   fullWidth />
               </Grid>
-              <Grid item className='text' xs={12}>
+              <Grid item id='text3' xs={12}>
                 <item>forgot Password?</item>
               </Grid>
               <div className="bottom">
-                <Grid item id='text' xs={12}>
-                  <Link to ="/signup"> create acount</Link>
-                  {/* <item >Create Account</item> */}
+                <Grid item id='text4' xs={12}>
+                  <Link to="/signup"> create account</Link>
                 </Grid>
                 <Grid item id='button' xs={3}>
                   <Button className='button' variant="contained" color="primary" onClick={Submit} fullWidth>

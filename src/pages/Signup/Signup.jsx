@@ -2,30 +2,30 @@ import React, { useState } from 'react'
 import { Grid, Button, TextField } from '@mui/material';
 import "../Signup/Signup.css"
 import { signup } from '../../Services/UserServices';
-import {Link, useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function Signup() {
   const [user, setUser] = useState({ firstName: '', lastName: '', username: '', password: '', confirmpassword: '', service: 'advance' })
 
   const setFirstName = (e) => {
     setUser({ ...user, firstName: e.target.value })
-}
-const setLastName = (e) => {
+  }
+  const setLastName = (e) => {
     setUser({ ...user, lastName: e.target.value })
-}
-const setEmail=(e)=>{
-    setUser({...user,email:e.target.value})   
-}
-const setPassword = (e) => {
+  }
+  const setEmail = (e) => {
+    setUser({ ...user, email: e.target.value })
+  }
+  const setPassword = (e) => {
     setUser({ ...user, password: e.target.value })
-}
-const setConfirmPassword = (e) => {
+  }
+  const setConfirmPassword = (e) => {
     setUser({ ...user, confirmpassword: e.target.value })
-}
+  }
 
   const NameRegex = /^[A-Z]{1}[a-z]{2,}$/;
-    const UserNameRegex = /^[a-z]{3,}(.[0-9a-z]*)?@([a-z]){2,}.[a-z]*$/;
-    const passRegex = /^.*(?=.{8,})(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$/;
+  const UserNameRegex = /^[a-z]{3,}(.[0-9a-z]*)?@([a-z]){2,}.[a-z]*$/;
+  const passRegex = /^.*(?=.{8,})(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$/;
 
   // const handleLogin = () => {
   //   console.log('User:', user);
@@ -39,7 +39,7 @@ const setConfirmPassword = (e) => {
   //   }));
   // };
 
-  
+
 
   const [checkError, setInputError] = useState({
     UserFirstName: false,
@@ -65,13 +65,13 @@ const setConfirmPassword = (e) => {
 
     if (FirstnameTest === false) {
       setInputError((prevState) => ({
-       
+
         UserFirstName: true,
         UserFirstNameMsg: "Enter correct First Name",
       }));
     } else {
       setInputError((prevState) => ({
-       
+
         UserFirstName: false,
         UserFirstNameMsg: "",
       }));
@@ -140,9 +140,9 @@ const setConfirmPassword = (e) => {
             </Grid>
             <p className='top-text'>Create your Google Account</p>
 
-            <Grid container className='txtfields' spacing={3} style={{ marginBottom: '20px' }}>
+            <Grid container className='txtfields' spacing={1}>
               <Grid item xs={12} sm={6}>
-                <TextField label="First Name*"
+                <TextField id='first-name' label="First Name*" 
                   value={user.firstName}
                   name='firstname'
                   // onChange={handleInputChange}
@@ -152,7 +152,7 @@ const setConfirmPassword = (e) => {
                   fullWidth size='small' />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField label="Last Name*"
+                <TextField id='last-name' label="Last Name*"
                   value={user.lastName}
                   name='lastname'
                   // onChange={handleInputChange}
@@ -163,7 +163,7 @@ const setConfirmPassword = (e) => {
               </Grid>
             </Grid>
             <Grid item xs={12} spacing={3}>
-              <TextField label="Email*"
+              <TextField id='email' label="Email*"
                 value={user.email}
                 name='email'
                 // onChange={handleInputChange}
@@ -172,13 +172,13 @@ const setConfirmPassword = (e) => {
                 helperText={checkError.UserEmailErrorMsg}
                 fullWidth size='small' />
             </Grid>
-            <Grid item xs={12} style={{ fontSize: 12, textAlign: 'left'}}>
+            <Grid id='text' item xs={12} style={{ fontSize: 12, textAlign: 'left' }}>
               you can use letters,numbers & periods
             </Grid>
             <p className='middle-text'>Use my current email instead</p>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
               <Grid item xs={12} sm={6}>
-                <TextField label="Password*"
+                <TextField id='password' label="Password*"
                   type='password'
                   value={user.password}
                   name='password'
@@ -189,7 +189,7 @@ const setConfirmPassword = (e) => {
                   fullWidth size='small' />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField label="Confirm*"
+                <TextField id='confirm-password' label="Confirm*"
                   value={user.confirm}
                   name='confirmpassword'
                   // onChange={handleInputChange}
@@ -203,7 +203,7 @@ const setConfirmPassword = (e) => {
 
             <Grid container>
               <Grid item xs={6} id="signin-txt">
-              <Link to ="/"> Sign in insted </Link>
+                <Link to="/"> Sign in insted </Link>
                 {/* <p>Sign in insted </p> */}
               </Grid>
               <Grid item xs={6} style={{ textAlign: 'right' }}>
