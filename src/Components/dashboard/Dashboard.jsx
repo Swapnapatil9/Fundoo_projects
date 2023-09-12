@@ -142,7 +142,7 @@ function Dashboard() {
             <div className="list-view" >
               {
                 info.map((notes) =>
-                  <GridList notes={notes} getData={getData} deleting={deleting} updateArchive={UpdateArchive} permanentDeleting={permanentDeleting} />
+                  <GridList notes={notes} getData={getData} updateArchive={UpdateArchive} dataDeleting={dataDeleting} />
                 )}
             </div>
           )}

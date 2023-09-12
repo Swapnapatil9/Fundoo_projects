@@ -43,4 +43,10 @@
         width: 75vw;
         flex-wrap: wrap;
     }
+    .list-view {
+        display: flex;
+        justify-content: space-between;
+        width: 75vw;
+        flex-wrap: wrap;
+    }
 }

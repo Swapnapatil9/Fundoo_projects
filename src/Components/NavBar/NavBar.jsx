@@ -128,16 +128,7 @@ function NavBar({ handleDrawer, ChangeFlex , handleLogout}) {
     >
 
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="normal"
-        >
-          <AccountCircleOutlinedIcon />
-        </IconButton>
-        <p>Profile</p>
+        <MenuItem onClick={()=>{handleMenuClose(); handleLogout()}}>Log Out</MenuItem>
       </MenuItem>
     </Menu>
   );
@@ -197,7 +188,7 @@ function NavBar({ handleDrawer, ChangeFlex , handleLogout}) {
               <AccountCircleOutlinedIcon handleLogout={handleLogout}/>
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: 'block', md: 'none', sm:'none'} , marginLeft:'300px'}}>
+          <Box sx={{ display: { xs: 'block', md: 'none', sm:'none'} , marginLeft:'400px'}}>
             <IconButton
               size="large"
               aria-label="show more"

@@ -10,10 +10,10 @@
 .inside-main {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     border: 3px solid whitesmoke;
     width: 60%;
-    height: 100%;
+    height: auto;
     padding: 20px;
     border-radius: 10px;
 }
@@ -32,9 +32,9 @@ form {
 
 #image {
     width: 25%;
-    height: 40px;
-    /* border: 2px solid rgb(218, 14, 14); */
-
+    height: 30px;
+    /* border: 1px solid blue; */
+    padding: 0;
 }
 
 .image-container {
@@ -50,11 +50,14 @@ form {
     /* border:1px solid black; */
 }
 
+.txtfields {
+    margin-bottom: 10px;
+}
+
 .top-text {
     font-size: 20px;
     font-weight: 5px;
-    /* padding-left: 15px; */
-    padding-bottom: 15px;
+    margin-left: 0;
     /* border:1px solid black; */
 }
 
@@ -68,7 +71,7 @@ form {
 .middle-text {
     color: purple;
     font-Size: 17;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     /* border:1px solid black; */
     text-align: left;
 }
@@ -112,9 +115,49 @@ label {
         width: 100vw;
         /* border:1px solid black; */
     }
-    
+
     .inside-main {
-        height: 100%;
+        height: auto;
         width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-text {
+        font-size: 15px;
+        font-weight: 5px;
+    }
+
+    .imgbox {
+        display: flex;
+        justify-content: flex-start;
+        /* border: 1px solid red; */
+    }
+
+    #image {
+        width: 30%;
+        height: 40px;
+        /* border: 1px solid blue; */
+    }
+
+    .txtfields {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    #first-name,
+    #last-name,
+    #email,
+    #password,
+    #confirm-password {
+        font-size: 10px;
+        width: auto;
+        height: 15px;
+    }
+    .middle-text{
+       font-size: 12px;
+    }
+    #middtxt, #text{
+        display: none;
     }
 }
