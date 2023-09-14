@@ -14,7 +14,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import "./MiniDrawer.css"
 import { ListItemButton } from '@mui/material';
 
-const drawerWidth = 200;
+const drawerWidth = 180;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
