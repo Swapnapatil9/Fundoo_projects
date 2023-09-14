@@ -8,7 +8,7 @@ import "./TakeNoteOne.css"
 function TakeNoteOne({showtoggle}) {
    
     return (
-        <Grid container className='main-container1' style={{ width: "650px" }}>
+        <Grid container className='main-container1' style={{ width: "600px" }}>
             <Grid item className="grid-content" xs={12}>
                 <Grid item xs={9} className='notes'>
                 <input id='input' placeholder='Take a note...' onClick={showtoggle}></input>
